@@ -65,14 +65,29 @@ end
 
 class Pensar < Estrategia
   def initialize
-    @posibles = ['Piedra', 'Papel', 'Tijera', 'Lagarto', 'Spock']
+    @historial = Hash.new(0)
+    @posibles = %w[Piedra Papel Tijera Lagarto Spock]
   end
 
   def prox(jugada_anterior_oponente)
-    eleccion = @posibles.sample
-    crear_jugada(eleccion)
+    if jugada_anterior_oponente && jugada_anterior_oponente.respond_to?(:class)
+      clave = jugada_anterior_oponente.class.name
+      @historial[clave] += 1
+    end
+
+    total = @historial.values.sum
+    if total == 0
+      return crear_jugada(@posibles.sample)
+    end
+
+    mas_probable = @historial.max_by { |k, v| v }[0]
+    ganadores = Jugada::GANADORES.select { |g, vence_a| vence_a.include?(mas_probable) }.keys
+    seleccion = ganadores.sample || @posibles.sample
+
+    crear_jugada(seleccion)
   end
 end
+
 
 class Manual < Estrategia
   attr_accessor :jugada_elegida
@@ -82,7 +97,7 @@ class Manual < Estrategia
   end
 
   def prox(jugada_anterior_oponente)
-    puts "[Manual#prox] jugada_elegida = #{@jugada_elegida.inspect}"
+    # puts "[Manual#prox] jugada_elegida = #{@jugada_elegida.inspect}"
 
     if @jugada_elegida.nil?
       raise "Debes seleccionar una jugada para el jugador Manual."

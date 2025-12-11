@@ -14,7 +14,7 @@ El archivo entregable sigue la estructura solicitada, con las fuentes y recursos
 CI3661-Proyecto3
 ├─ Estrategias.rb           # Lógica de Inteligencia Artificial
 ├─ Jugadas.rb               # Lógica de reglas del juego
-├─ RPTLS.rb                 # Archivo principal - Interfaz Gráfica
+├─ main.rb                  # Archivo principal - Interfaz Gráfica
 ├─ Piedra.png               # Imagen de jugada piedra
 ├─ Papel.png                # Imagen de jugada papel
 ├─ Tijera.png               # Imagen de jugada tijera
@@ -30,8 +30,8 @@ Este proyecto utiliza la librería gráfica Shoes. Debido a requerimientos de la
 
 #### Prerrequisitos
 
-- Tener instalado JRuby.
-- Instalar la gema shoes:
+- JRuby (recomendado: versión 9.x compatible con tu entorno Shoes).
+- Gem `shoes` instalada para JRuby.
 
 #### Pasos para ejecutar
 
@@ -46,7 +46,7 @@ jruby -S gem install shoes --pre
 Ejecutar el archivo principal desde la terminal:
 
 ```bash
-jruby RPTLS.rb
+jruby main.rb
 ```
 
 ### Descripción

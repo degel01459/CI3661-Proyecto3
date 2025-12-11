@@ -165,7 +165,7 @@ Shoes.app(title: "Piedra, Papel, Tijera, Lagarto, Spock", width: 800, height: 65
     actualizar_vista(move1, move2)
     begin
       if defined?(@j1) && @j1.is_a?(Manual)
-        puts "[jugar_ronda] Limpiando selección manual anterior: #{@j1.jugada_elegida.inspect}"
+        # puts "[jugar_ronda] Limpiando selección manual anterior: #{@j1.jugada_elegida.inspect}"
         @j1.jugada_elegida = nil
       end
     rescue => e
